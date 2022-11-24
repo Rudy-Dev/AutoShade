@@ -6,7 +6,7 @@ import { DefaultValue } from "config";
 interface ISelectorProps {
 	LabelText: string;
 	Position: UDim;
-	Value: [number, Hooks.Dispatch<Hooks.BasicStateAction<number>>];
+	Value: [number, (value: number) => void];
 }
 
 const Selector: Hooks.FC<ISelectorProps> = (props, { useState }) => {
@@ -23,11 +23,7 @@ const Selector: Hooks.FC<ISelectorProps> = (props, { useState }) => {
 			/>
 			<TextInput
 				OnFocusLost={(text) => {
-					let value = tonumber(text);
-					if (value === undefined) value = DefaultValue;
-					if (value > 1) value = 1;
-					else if (value < 0) value = 0;
-					setValue(value);
+					setValue(math.clamp(tonumber(text) ?? DefaultValue, 0, 1));
 				}}
 				PlaceholderText={props.LabelText}
 				Text={string.format("%.2f", value)}
@@ -51,5 +47,4 @@ const Selector: Hooks.FC<ISelectorProps> = (props, { useState }) => {
 		</frame>
 	);
 };
-
 export = new Hooks(Roact)(Selector);
