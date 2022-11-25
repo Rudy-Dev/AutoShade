@@ -25,6 +25,6 @@
     "@rbxts/roact": "^1.4.4-ts.0",
     "@rbxts/roact-hooks": "^0.4.1-ts.3",
     "@rbxts/services": "^1.5.1",
-    "@rbxts/studiocomponents": "file:../StudioComponents"
+    "@rbxts/studiocomponents": "^0.1.4"
   }
 }
